@@ -9,19 +9,32 @@
  * sure it also works with negative step values so that range(5, 2, -1) produces [5, 4, 3, 2].
  */
 
-function range(start,end) {
-    // Create an empty array to hold the resut.
+function range(start,end,step=1) {
+    // Create an empty array to hold the result.
     var result = [start];
 
-    // Setup loop to either add or subtract 1.
-    while (start != end) {
-        if (start > end) {
-            start--;
-            result.push(start);
+    // Make sure to get the absolute value in case step is a negative value.
+    step = Math.abs(step);
+
+    // Setup loop to either add or subtract step value.
+    if (result[0] > end) {
+        while (start >= end) {
+            start-=step;
+
+            // if to make sure that the last loop doesn't get pushed if the value is outside the range
+            if (start >= end) {
+                result.push(start);
+            }
         }
-        else {
-            start++;
-            result.push(start);
+    }
+    else {
+        while (start <= end) {
+            start+=step;
+
+            // if to make sure that the last loop doesn't get pushed if the value is outside the range
+            if (start <= end) {
+                result.push(start);
+            }
         }
     }
 
@@ -30,7 +43,7 @@ function range(start,end) {
 
 console.log(range(1, 10));
 // → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-// console.log(range(5, 2, -1));
+console.log(range(5, 2, -1));
 // → [5, 4, 3, 2]
 //console.log(sum(range(1, 10)));
 // → 55
