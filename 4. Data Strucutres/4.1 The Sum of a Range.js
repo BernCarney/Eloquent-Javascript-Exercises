@@ -41,9 +41,18 @@ function range(start,end,step=1) {
     return result;
 }
 
+function sum(sumRange) {
+    var answer = 0;
+    for(let i=0;i<sumRange.length;i++){
+        answer += sumRange[i];
+    }
+
+    return answer;
+}
+
 console.log(range(1, 10));
 // → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 console.log(range(5, 2, -1));
 // → [5, 4, 3, 2]
-//console.log(sum(range(1, 10)));
+console.log(sum(range(1, 10)));
 // → 55
